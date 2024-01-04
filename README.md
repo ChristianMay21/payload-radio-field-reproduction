@@ -1,42 +1,22 @@
-# Payload Blank Template
+# Payload Radio Button Bug Minimum Reproduction
 
-A blank template for [Payload](https://github.com/payloadcms/payload) to help you get up and running quickly. This repo may have been created by running `npx create-payload-app@latest` and selecting the "blank" template or by cloning this template on [Payload Cloud](https://payloadcms.com/new/clone/blank).
+## What is the bug?
+Let's say you have:
+- Two collections - 'Collection 1' and 'Collection 2'
+- Both collections have a radio field using the same name and values - we'll call this 'radio field 1'
+- Collection 1 contains a reference field to Collection 2
 
-See the official [Examples Directory](https://github.com/payloadcms/payload/tree/main/examples) for details on how to use Payload in a variety of different ways.
-
-## Development
-
-To spin up the project locally, follow these steps:
-
-1. First clone the repo
-1. Then `cd YOUR_PROJECT_REPO && cp .env.example .env`
-1. Next `yarn && yarn dev` (or `docker-compose up`, see [Docker](#docker))
-1. Now `open http://localhost:3000/admin` to access the admin panel
-1. Create your first admin user using the form on the page
-
-That's it! Changes made in `./src` will be reflected in your app.
-
-### Docker
-
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this project locally. To do so, follow these steps:
-
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
-
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
-
-## Production
-
-To run Payload in production, you need to build and serve the Admin panel. To do so, follow these steps:
-
-1. First invoke the `payload build` script by running `yarn build` or `npm run build` in your project root. This creates a `./build` directory with a production-ready admin bundle.
-1. Then run `yarn serve` or `npm run serve` to run Node in production and serve Payload from the `./build` directory.
-
-### Deployment
-
-The easiest way to deploy your project is to use [Payload Cloud](https://payloadcms.com/new/import), a one-click hosting solution to deploy production-ready instances of your Payload apps directly from your GitHub repo. You can also deploy your app manually, check out the [deployment documentation](https://payloadcms.com/docs/production/deployment) for full details.
-
-## Questions
-
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+## How do I reproduce it?
+1. Clone this repo
+2. Open root folder in terminal
+3. Run `yarn install`
+4. Run `yarn run dev`
+5. Open admin backend at https://locahost:3000
+6. Create a user and log in
+7. Open Collection_1s
+8. Click 'Create new Collection_1'
+9. On the 'Related_collection_2' field, click the '+' button to create a related document in Collection_2
+10. Attempt to edit Radio_field_2 - notice that this is successful
+11. Attempt to edit Radio_field_1 - notice that this is unsuccessful, and the radio button UI does not update
+12. Press the 'X' in the top right to dismiss the screen to create the Collection_2 document
+13. Notice that Radio_field_1 on Collection 1 now has its value set to the value you selected for the Collection_2 document

@@ -34,20 +34,9 @@ export default buildConfig({
           ],
         },
         {
-          name: "array_of_related_collection_2",
-          type: "array",
-          label: "Array Field of Related collection_2 documents",
-          labels: {
-            singular: "Collection 2 Document",
-            plural: "Collection 2 Documents",
-          },
-          fields: [
-            {
-              name: "Related_Collection_2_Document",
-              type: "relationship",
-              relationTo: "collection_2",
-            },
-          ],
+          name: "related_collection_2",
+          type: "relationship",
+          relationTo: "collection_2",
         },
       ],
       admin: {
