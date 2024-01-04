@@ -1,14 +1,21 @@
 # Payload Radio Button Bug Minimum Reproduction
 
 ## What is the bug?
+
 Let's say you have:
+
 - Two collections - 'Collection 1' and 'Collection 2'
 - Both collections have a radio field using the same name and values - we'll call this the 'shared radio field'
 - Collection 1 contains a reference field to Collection 2
 
 If you open a document in Collection 1, and there edit or create a document in Collection 2 using the reference field, attempting to edit the 'shared radio field' on the Collection 2 document will instead edit the value for the shared field on the 'parent' Collection 1 document.
 
+## What's in this repo?
+
+This repo is just a clone of the Payload 'blank' template, with two collections - 'collection 1' and 'collection 2' - added in the config
+
 ## How do I reproduce it?
+
 1. Clone this repo
 2. Open root folder in terminal
 3. Run `yarn install`
